@@ -13,6 +13,7 @@
           <li class="nav-item"><a th:href="@{/}" class="nav-link m-1 active" aria-current="page">Főoldal</a></li>
           <li class="nav-item"><a th:href="@{/des}" class="nav-link m-1 active">DES</a></li>
           <li class="nav-item"><a th:href="@{/aes}" class="nav-link m-1 bg-info">AES</a></li>
+          <li class="nav-item"><a th:href="@{/vzs}" class="nav-link m-1 active">VZS</a></li>
         </ul>
       </header>
       <h1 class="text-center mt-5">AES titkosítás</h1>
@@ -20,7 +21,7 @@
         <div class="bd-example">
           <label for="text-input" class="form-label">Titkosítandó szöveg</label>
           <div class="input-group bg-white p-1 rounded">
-            <input class="form-control w-75" type="text" placeholder="Titkos leszek..." id="text-input" name="text-to-encrypt">
+            <input class="form-control w-75" type="text" placeholder="Titkos leszek..." id="text-input" name="text-to-encrypt" required>
             <select class="form-select border border-secondary" name="encryptKey" required>
               <option value="" disabled selected hidden>Kulcs választása</option>
               <option value="alfa">Alfa</option>
@@ -42,7 +43,7 @@
         <div class="bd-example">
           <label for="binary-input" class="form-label">Visszafejtendő adat</label>
           <div class="input-group bg-white p-1 rounded">
-            <input type="text" class="form-control w-75" placeholder="Titok" id="binary-input" name="text-to-decrypt">
+            <input type="text" class="form-control w-75" placeholder="Titok" id="binary-input" name="text-to-decrypt" required>
             <select class="form-select border border-secondary" name="decryptKey" required>
               <option value="" disabled selected hidden>Kulcs választása</option>
               <option value="alfa">Alfa</option>

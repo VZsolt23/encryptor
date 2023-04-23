@@ -57,4 +57,22 @@ public class PageController {
         return "aes.html";
     }
 
+    @GetMapping("/vzs")
+    public String ownPage() {
+        return "own.html";
+    }
+
+    @PostMapping("/vzs/encrypted")
+    public String ownEncryptText(@RequestParam("text-to-encrypt") String input, @RequestParam("encryptKey") String character,  Model model) {
+        String encrypted = pageService.ownEncryption(input, character);
+        model.addAttribute("ownEncryptedText", encrypted);
+        return "own.html";
+    }
+
+    @PostMapping("/vzs/decrypted")
+    public String ownDecryptSecret(@RequestParam("text-to-decrypt") String input, @RequestParam("decryptKey") String character, Model model) {
+        String secret = pageService.ownDecryption(input, character);
+        model.addAttribute("ownDecrypt", secret);
+        return "own.html";
+    }
 }
