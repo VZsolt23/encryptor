@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>VZS</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    </head>
+    <body class="d-flex h-100 text-white" style="background-color: #063104">
+        <div class="container">
+            <header class="d-flex justify-content-center py-3">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a th:href="@{/}" class="nav-link m-1 active" aria-current="page">Főoldal</a></li>
+                    <li class="nav-item"><a th:href="@{/des}" class="nav-link m-1 active">DES</a></li>
+                    <li class="nav-item"><a th:href="@{/aes}" class="nav-link m-1 active">AES</a></li>
+                    <li class="nav-item"><a th:href="@{/own}" class="nav-link m-1 bg-info">VZS</a></li>
+                </ul>
+            </header>
+            <h1 class="text-center mt-5">VZS titkosítás</h1>
+            <form th:action="@{/vzs/encrypted}" method="post">
+                <div class="bd-example">
+                    <label for="text-input" class="form-label">Titkosítandó szöveg</label>
+                        <div class="input-group bg-white p-1 rounded">
+                            <input class="form-control w-75" type="text" placeholder="Titkos leszek..." id="text-input" name="text-to-encrypt" required>
+                            <input type="text" class="border border-secondary" name="encryptKey" placeholder="Plusz karakter" maxlength="1" pattern="[0-9\W]+" required>
+                        </div>
+                </div>
+                <div class="bd-example d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-primary mt-3" type="submit">Titkosít</button>
+                </div>
+            </form>
+            <div class="mt-5">
+                <code th:text="${ownEncryptedText}"></code>
+            </div>
+            <h1 class="text-center mt-5">VZS visszafejtés</h1>
+            <form th:action="@{/vzs/decrypted}" th:object="${decryptObj}" method="post">
+                <div class="bd-example">
+                    <label for="binary-input" class="form-label">Visszafejtendő adat</label>
+                        <div class="input-group bg-white p-1 rounded">
+                            <input class="form-control w-75" type="text" placeholder="Titok" id="binary-input" name="text-to-decrypt" required>
+                            <input type="text" class="border border-secondary" name="decryptKey" placeholder="Plusz karakter" maxlength="1" pattern="[0-9\W]+" required>
+                        </div>
+                </div>
+                <div class="bd-example d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-primary mt-3" type="submit">Dekódol</button>
+                </div>
+            </form>
+            <div class="mt-5">
+                <code th:text="${ownDecrypt}"></code>
+            </div>
+        </div>
+    </body>
+</html>
